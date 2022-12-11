@@ -33,6 +33,6 @@ npm install express-handlebars@6.0.6
 ```
 4. 啟動伺服器
 ```
-npm run dev
+npm run start
 ```
 5. 當終端機顯示 `Express is running on http://localhost:3000` ，代表已成功啟動伺服器並執行app.js檔案，至瀏覽器輸入 http://localhost:3000 即可使用本網站
