@@ -8,7 +8,9 @@
 1. [Node.js](https://nodejs.org/en/)(v14.16.0) - JavaScript執行環境
 2. [Express](https://expressjs.com/)(v4.18.2) -網路框架(web framework)
 3. [Express-handlebars](https://www.npmjs.com/package/express-handlebars)(v6.0.6) - 模板引擎
-4. [Visual Studio Code](https://code.visualstudio.com/) - 程式碼編輯器
+4. [Bootstrap](https://getbootstrap.com/)(v5.1.1) - 前端開發工具
+5. [Font Awesome](https://fontawesome.com/)(v6.2.1) - 圖形與字型設計套件
+6. [Visual Studio Code](https://code.visualstudio.com/) - 程式碼編輯器
 ## 安裝指南 Installation Guide
 1. 打開終端機，複製此專案至本機
 ```
