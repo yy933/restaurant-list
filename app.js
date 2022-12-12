@@ -22,6 +22,7 @@ app.get('/restaurants/:restaurant_id', (req, res)=>{
   const restaurant = restaurantList.results.find(element => element.id.toString() === req.params.restaurant_id)
   res.render('show', {restaurant: restaurant})
 });
+
 ///routing: searching
 app.get('/search', (req, res)=>{
   const keyword = req.query.keyword
