@@ -25,8 +25,8 @@ app.get('/restaurants/:restaurant_id', (req, res)=>{
 
 ///routing: searching
 app.get('/search', (req, res)=>{
-  const keyword = req.query.keyword
-  const restaurants = restaurantList.results.filter(element => element.name.toLowerCase().includes(keyword.toLowerCase()))
+  const keyword = req.query.keyword.trim().toLowerCase()
+  const restaurants = restaurantList.results.filter(element => element.name.toLowerCase().includes(keyword) || element.name_en.toLowerCase().includes(keyword))
   res.render('index', {restaurants: restaurants, keyword: keyword})
 });
 // launching and listening the server
