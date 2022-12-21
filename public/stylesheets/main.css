@@ -1,3 +1,6 @@
+a{
+  text-decoration: none;
+}
 header {
   overflow: hidden;
 }
@@ -15,7 +18,7 @@ header {
   z-index: 0;
   margin: -5px;
   height: 360px;
-  background: #dddddd center center url('https://images.pexels.com/photos/2079438/pexels-photo-2079438.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
+  background: #dddddd center center url('https://images.pexels.com/photos/1640770/pexels-photo-1640770.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');
   background-size: cover;
   filter: blur(2px);
 }
@@ -23,17 +26,25 @@ header {
 .search-bar .search-bar-outer {
   position: relative;
   margin: 0 auto;
-  max-width: 680px;
-  background-color: #fce2cf;
+  max-width: 35vw;
+  background-color: #ccf3ea;
   border-radius: 8px;
   padding: 20px 30px;
   border: 0;
-  margin-top: -60px;
+  margin-top: -80px;
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
 }
 
-.search-bar .search-bar-inner h4 {
-  color: #9b4b4b;
+.search-bar .search-bar-inner h3 {
+  color:#2ca474;
+  font-weight: bold;
+}
+
+.dividing{
+  border-top: 1px dashed #559AC8;
+  width: 100%;
+  margin: 30px auto;
+  position: relative;
 }
 
 .form-control::placeholder {
@@ -42,7 +53,7 @@ header {
 }
 
 .btn-major {
-  background-color:#9b4b4b;
+  background-color:#2ca474;
   color: white;
 }
 
@@ -53,6 +64,7 @@ header {
 
 .card {
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 5px ;
 }
 
 .card img{
@@ -73,7 +85,7 @@ header {
 .restaurant-show-title {
   position: relative;
   top: -100px;
-  color: white;
+  color: #4592af;
   text-align: center;
   font-size: 3rem;
   text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
