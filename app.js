@@ -46,36 +46,52 @@ app.get('/', (req, res) => {
     .find()
     .lean()
     .then((restaurantsData) => res.render('index', { restaurantsData }))
-    .catch(err => console.log(err))
+    .catch((error) => {
+      console.log(err)
+      res.render('error', {'error_message': error.message})
+    })
 })
+// routing: sort
+app.get('/sort', (req, res) => {
+  
+})
+
+
 /// routing: searching
 app.get('/search', (req, res) => {
   if (!req.query.keyword) {
     res.redirect('/')
   }
   const keyword = req.query.keyword.trim().toLowerCase()
-  restaurants.find({})
+  restaurants
+    .find({})
     .lean()
     .then((restaurantsData) => {
       const restaurants = restaurantsData.filter(
         (element) =>
           element.name.toLowerCase().includes(keyword) ||
-      element.name_en.toLowerCase().includes(keyword) ||
-      element.category.includes(keyword)
-      )
-      res.render('index', { restaurantsData: restaurants, keyword })
-    }
-    )
-    .catch(error => console.log(error))
+          element.name_en.toLowerCase().includes(keyword) ||
+          element.category.includes(keyword)
+      );
+      res.render("index", { restaurantsData: restaurants, keyword });
+    })
+    .catch((error) => {
+      console.log(err);
+      res.render("error", { 'error_message': error.message });
+    });
 })
 
 /// routing for each item
 app.get('/restaurants/:_id', (req, res) => {
   const id = req.params._id
-  restaurants.findById(id)
+  restaurants
+    .findById(id)
     .lean()
-    .then((restaurant) => res.render('show', { restaurant }))
-    .catch((error) => console.log(error))
+    .then((restaurant) => res.render("show", { restaurant }))
+    .catch((error) => {
+      console.log(err);
+      res.render("error", { 'error_message': error.message });
+    });
 })
 
 // routing: create new items form
@@ -85,9 +101,13 @@ app.get('/new', (req, res) => {
 
 // routing: create new items
 app.post('/restaurants', (req, res) => {
-  restaurants.create(req.body)
-    .then(() => res.redirect('/'))
-    .catch(error => console.log(error))
+  restaurants
+    .create(req.body)
+    .then(() => res.redirect("/"))
+    .catch((error) => {
+      console.log(err);
+      res.render("error", { 'error_message': error.message });
+    });
 })
 
 // routing: edit items
@@ -96,37 +116,48 @@ app.get('/restaurants/:_id/edit', (req, res) => {
   restaurants
     .findById(id)
     .lean()
-    .then((restaurant) => res.render('edit', { restaurant }))
-    .catch((error) => console.log(error))
+    .then((restaurant) => res.render("edit", { restaurant }))
+    .catch((error) => {
+      console.log(err);
+      res.render("error", { 'error_message': error.message });
+    });
 })
 
 app.post('/restaurants/:_id/edit', (req, res) => {
   const id = req.params._id
   const contents = req.body
-  return restaurants.findById(id)
+  return restaurants
+    .findById(id)
     .then((restaurant) => {
-      restaurant.name = contents.name
-      restaurant.name_en = contents.name_en
-      restaurant.category = contents.category
-      restaurant.image = contents.image
-      restaurant.location = contents.location
-      restaurant.phone = contents.phone
-      restaurant.google_map = contents.google_map
-      restaurant.rating = contents.rating
-      restaurant.description = contents.description
-      return restaurant.save()
+      restaurant.name = contents.name;
+      restaurant.name_en = contents.name_en;
+      restaurant.category = contents.category;
+      restaurant.image = contents.image;
+      restaurant.location = contents.location;
+      restaurant.phone = contents.phone;
+      restaurant.google_map = contents.google_map;
+      restaurant.rating = contents.rating;
+      restaurant.description = contents.description;
+      return restaurant.save();
     })
     .then(() => res.redirect(`/restaurants/${id}`))
-    .catch(error => console.log(error))
+    .catch((error) => {
+      console.log(err);
+      res.render("error", { 'error_message': error.message });
+    });
 })
 
 // routing: delete items
 app.post('/restaurants/:_id/delete', (req, res) => {
   const id = req.params._id
-  return restaurants.findById(id)
+  return restaurants
+    .findById(id)
     .then((restaurant) => restaurant.remove())
-    .then(() => res.redirect('/'))
-    .catch(error => console.log(error))
+    .then(() => res.redirect("/"))
+    .catch((error) => {
+      console.log(err);
+      res.render("error", { 'error_message': error.message });
+    });
 })
 // launching and listening the server
 app.listen(port, () => {

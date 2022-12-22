@@ -17,13 +17,12 @@
 </div>
 {{!-- sort-by dropdown menu --}}
   <div id="sort-by">
-    <form action="/action_page.php">
-      <select name="cars" id="cars">
-        <option value="all">排序</option>
-        <option value="ascending">A -> Z</option>
-        <option value="descending">Z -> A</option>
-        <option value="category">類別</option>
-        <option value="location">地區</option>
+    <form action="/">
+    <label for="sort">排序方式：</label>
+      <select name="sort" id="sort">
+          <option value="ascending">A -> Z</option>
+          <option value="descending">Z -> A</option>
+          <option value="rating">推薦指數</option>
       </select>
     </form>
   </div>
