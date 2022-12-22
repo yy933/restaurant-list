@@ -1,10 +1,8 @@
-
+<div class="container d-flex justify-content-between align-items-center mt-5" id="search-sort-group">
 <!-- search bar -->
-<div class="container search-bar">
-  <div class="search-bar-outer">
+<div class="search-bar">
     <div class="search-bar-inner">
       <form action="/search">
-        <h3 class="mb-2">尋找餐廳：</h3>
         <div class="input-group">
           <input type="text" name="keyword" class="form-control" placeholder="輸入餐廳、分類" aria-label="Restaurant Name..." value="{{keyword}}" aria-describedby="search-button">
           <div class="input-group-append">
@@ -13,14 +11,25 @@
           </div>
         </div>
       </form>
-     <div class="dividing">
-  </div>
-     <div class="d-flex justify-content-center" id="add-bucket-list">
-     <h3 class="mb-2">找不到喜歡的餐廳？&nbsp;<a href="./new"><button class="btn btn-danger" style="font-size: 24px; font-weight:bold;">新增</button></a>自己的口袋名單吧！</h3>
-     </div>
+
+     
     </div>
+</div>
+{{!-- sort-by dropdown menu --}}
+  <div id="sort-by">
+    <form action="/action_page.php">
+      <select name="cars" id="cars">
+        <option value="all">排序</option>
+        <option value="ascending">A -> Z</option>
+        <option value="descending">Z -> A</option>
+        <option value="category">類別</option>
+        <option value="location">地區</option>
+      </select>
+    </form>
   </div>
 </div>
+
+
 
 <!-- restaurant list -->
 <div class="container mt-5">

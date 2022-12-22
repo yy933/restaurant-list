@@ -13,6 +13,11 @@ header {
   color: #226089;
 }
 
+#create-btn{
+  font-size: 20px; 
+  font-weight: bold;
+}
+
 .banner {
   position: relative;
   z-index: 0;
@@ -35,20 +40,15 @@ header {
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
 }
 
-.search-bar .search-bar-inner h3 {
-  color:#2ca474;
-  font-weight: bold;
+.search-bar{
+  width: 20%;
 }
-
-.dividing{
-  border-top: 1px dashed #559AC8;
-  width: 100%;
-  margin: 30px auto;
-  position: relative;
+.search-bar input{
+  border: 1px solid #999999;
 }
 
 .form-control::placeholder {
-  color: #aaaaaa;
+  color: #6c6767d4;
   font-size: 0.8rem;
 }
 
@@ -60,6 +60,19 @@ header {
 .form-control:focus {
   box-shadow: none;
   border-color: #ced4da;
+}
+
+#sort-by{
+  width: 13%;
+}
+
+#sort-by select{
+  width: 100%;
+  padding: 6px;
+  background: rgba(255,255,255,0.70);
+  border: 2px solid #999999;
+  border-radius: 3px;
+  font-size: 1rem;
 }
 
 .card {
