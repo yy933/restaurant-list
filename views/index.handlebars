@@ -17,12 +17,13 @@
 </div>
 {{!-- sort-by dropdown menu --}}
   <div id="sort-by">
-    <form action="/">
-    <label for="sort">排序方式：</label>
-      <select name="sort" id="sort">
-          <option value="ascending">A -> Z</option>
-          <option value="descending">Z -> A</option>
-          <option value="rating">推薦指數</option>
+    <form action="/sort" method="get">
+      <select id="sort" name="sortMethod" onchange='this.form.submit()'>
+          <option selected>{{#if sortMethod}}{{sortMethod}}{{else}}排序方式{{/if}}</option>
+          <option value="A -> Z" >A -> Z</option>
+          <option value="Z -> A" >Z -> A</option>
+          <option value="推薦指數:高至低">推薦指數:高至低</option>
+          <option value="推薦指數:低至高">推薦指數:低至高</option>
       </select>
     </form>
   </div>
