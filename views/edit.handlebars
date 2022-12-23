@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-md-10 col-12 mx-auto">
     {{!-- Create New items form --}}
-<form class="row g-3 needs-validation" action="/restaurants/{{restaurant._id}}/edit" method="POST" id="form" novalidate>
+<form class="row g-3 needs-validation" action="/restaurants/{{restaurant._id}}?_method=PUT" method="POST" id="form" novalidate>
 <div class="mb-3">
   <label for="name" class="form-label"><i class="fa-solid fa-utensils"></i>&nbsp店名:</label><input type="text" class="form-control" placeholder="請輸入店名" name="name" id="name" value={{restaurant.name}} required>
   <div class="invalid-feedback">

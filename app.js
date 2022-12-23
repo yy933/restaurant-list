@@ -6,6 +6,8 @@ const mongoose = require('mongoose')
 const restaurants = require('./models/restaurants')
 // include body parser
 const bodyParser = require('body-parser')
+// include method-override
+const methodOverride = require('method-override') 
 // 僅在非正式環境時, 使用 dotenv
 if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config()
@@ -39,6 +41,8 @@ app.set('view engine', 'handlebars')
 app.use(express.static('public'))
 // Use body parser
 app.use(bodyParser.urlencoded({ extended: true }))
+// Use method override
+app.use(methodOverride("_method"));
 
 // setting routing: requests and responses
 app.get('/', (req, res) => {
