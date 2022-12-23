@@ -3,11 +3,7 @@
 這是一個使用Node.js與Express所建立的餐廳資訊網站，使用者可以透過關鍵字搜尋餐廳，也可以新增、編輯自己喜愛的餐廳清單。
 <p align="center">
   <h3>首頁</h3>
-  <img src="readme_images/my-bucket-list_index.jpg" width="100%" alt="my-bucket-list_index">
-   <h3>新增餐廳頁面</h3>
-  <img src="readme_images/my-bucket-list_new.jpg" width="100%" alt="my-bucket-list_new">
-   <h3>餐廳詳細資訊頁面</h3>
-  <img src="readme_images/my-bucket-list_details.jpg" width="100%" alt="my-bucket-list_">
+  <img src="readme_images/Foodies-diary_index.jpg" width="100%" alt="my-bucket-list_index">
 </p>
 
 ## 功能 Features
