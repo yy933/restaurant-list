@@ -101,13 +101,22 @@ app.get('/new', (req, res) => {
 
 // routing: create new items
 app.post('/restaurants', (req, res) => {
-  restaurants
-    .create(req.body)
-    .then(() => res.redirect(`/restaurants/${req.body._id}`))
-    .catch((error) => {
+  const contents = req.body
+  restaurants.create(contents,  (error, newItem) => {
+    if (error) {
       console.log(error);
-      res.render("error", { error_message: error.message });
-    });
+      return res.render("error", { error_message: error.message });
+    }
+    if (!newItem) {
+      console.log("Couldn't save restaurant!");
+      return res.end();
+    }
+    if (!newItem._id) {
+      console.log(`No ${newItem._id} found`);
+      return res.end();
+    }
+    res.redirect(`/restaurants/${newItem._id}`);
+  });
 })
 
 // routing: edit items
