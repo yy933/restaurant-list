@@ -47,7 +47,7 @@ app.get('/', (req, res) => {
     .lean()
     .then((restaurantsData) => res.render('index', { restaurantsData }))
     .catch((error) => {
-      console.log(err)
+      console.log(error)
       res.render('error', {'error_message': error.message})
     })
 })
@@ -76,7 +76,7 @@ app.get('/search', (req, res) => {
       res.render("index", { restaurantsData: restaurants, keyword });
     })
     .catch((error) => {
-      console.log(err);
+      console.log(error);
       res.render("error", { 'error_message': error.message });
     });
 })
@@ -89,7 +89,7 @@ app.get('/restaurants/:_id', (req, res) => {
     .lean()
     .then((restaurant) => res.render("show", { restaurant }))
     .catch((error) => {
-      console.log(err);
+      console.log(error);
       res.render("error", { 'error_message': error.message });
     });
 })
@@ -103,10 +103,10 @@ app.get('/new', (req, res) => {
 app.post('/restaurants', (req, res) => {
   restaurants
     .create(req.body)
-    .then(() => res.redirect("/"))
+    .then(() => res.redirect(`/restaurants/${req.body._id}`))
     .catch((error) => {
-      console.log(err);
-      res.render("error", { 'error_message': error.message });
+      console.log(error);
+      res.render("error", { error_message: error.message });
     });
 })
 
@@ -118,7 +118,7 @@ app.get('/restaurants/:_id/edit', (req, res) => {
     .lean()
     .then((restaurant) => res.render("edit", { restaurant }))
     .catch((error) => {
-      console.log(err);
+      console.log(error);
       res.render("error", { 'error_message': error.message });
     });
 })
@@ -142,7 +142,7 @@ app.post('/restaurants/:_id/edit', (req, res) => {
     })
     .then(() => res.redirect(`/restaurants/${id}`))
     .catch((error) => {
-      console.log(err);
+      console.log(error);
       res.render("error", { 'error_message': error.message });
     });
 })
@@ -155,7 +155,7 @@ app.post('/restaurants/:_id/delete', (req, res) => {
     .then((restaurant) => restaurant.remove())
     .then(() => res.redirect("/"))
     .catch((error) => {
-      console.log(err);
+      console.log(error);
       res.render("error", { 'error_message': error.message });
     });
 })
