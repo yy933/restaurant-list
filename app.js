@@ -4,13 +4,16 @@ const usePassport = require('./config/passport')
 const exhbs = require('express-handlebars')
 const bodyParser = require('body-parser')
 const flash = require('connect-flash')
+if (process.env.NODE_ENV !== "production") {
+  require("dotenv").config();
+}
 const methodOverride = require('method-override')
 const routes = require('./routes')
 require('./config/mongoose')
 
 // server related variables
 const app = express()
-const port = 3000
+const port = process.env.PORT
 
 // set handlebars configurations
 app.engine('handlebars', exhbs({ defaultLayout: 'main' }))
@@ -18,11 +21,11 @@ app.engine('handlebars', exhbs({ defaultLayout: 'main' }))
 app.set('view engine', 'handlebars')
 app.use(
   session({
-    secret: 'ThisIsMySecret',
+    secret: process.env.SESSION_SECRET,
     resave: false,
-    saveUninitialized: true
+    saveUninitialized: true,
   })
-)
+);
 // setting static files
 app.use(express.static('public'))
 // Use body parser
