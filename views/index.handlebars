@@ -1,4 +1,6 @@
-<div class="container d-flex justify-content-between align-items-center mt-5" id="search-sort-group">
+<div class="container  mt-5" id="search-sort-group">
+  <div class="col-md-10 col-12 mx-auto">
+    <div class="row d-flex justify-content-between align-items-center">
 <!-- search bar -->
 <div class="search-bar">
     <div class="search-bar-inner">
@@ -19,14 +21,21 @@
   <div id="sort-by">
     <form action="/sort" method="get">
       <select id="sort" name="sortMethod" onchange='this.form.submit()'>
+        
           <option selected>{{#if sortMethod}}{{sortMethod}}{{else}}排序方式{{/if}}</option>
+          <optgroup label="字母排序">
           <option value="A -> Z" >A -> Z</option>
           <option value="Z -> A" >Z -> A</option>
+          </optgroup>
+          <optgroup label="推薦指數排序">
           <option value="推薦指數:高至低">推薦指數:高至低</option>
           <option value="推薦指數:低至高">推薦指數:低至高</option>
+          </optgroup>
       </select>
     </form>
   </div>
+  </div>
+</div>
 </div>
 
 

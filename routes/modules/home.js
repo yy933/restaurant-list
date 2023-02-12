@@ -21,9 +21,11 @@ router.get('/search', (req, res) => {
     res.redirect('/')
   }
   const keyword = req.query.keyword.trim().toLowerCase()
+
   restaurants
     .find({})
     .lean()
+
     .then((restaurantsData) => {
       const restaurants = restaurantsData.filter(
         (element) =>
@@ -31,7 +33,8 @@ router.get('/search', (req, res) => {
           element.name_en.toLowerCase().includes(keyword) ||
           element.category.includes(keyword)
       )
-      res.render('index', { restaurantsData: restaurants, keyword })
+
+      res.render('index', { restaurantsData: restaurants, keyword, sortMethod })
     })
     .catch((error) => {
       console.log(error)
@@ -55,6 +58,7 @@ router.get('/sort', (req, res) => {
   if (sortMethod === '推薦指數:低至高') {
     sortBy = { rating: 'asc' }
   }
+
   restaurants
     .find()
     .lean()
