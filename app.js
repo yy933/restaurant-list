@@ -1,5 +1,6 @@
 const express = require('express')
 const session = require('express-session')
+const usePassport = require("./config/passport");
 const exhbs = require('express-handlebars')
 const bodyParser = require('body-parser')
 const methodOverride = require('method-override')
@@ -27,7 +28,7 @@ app.use(express.static('public'))
 app.use(bodyParser.urlencoded({ extended: true }))
 // Use method override
 app.use(methodOverride('_method'))
-
+usePassport(app)
 app.use(routes)
 
 // launching and listening the server
