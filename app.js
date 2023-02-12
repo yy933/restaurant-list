@@ -1,4 +1,5 @@
 const express = require('express')
+const session = require('express-session')
 const exhbs = require('express-handlebars')
 const bodyParser = require('body-parser')
 const methodOverride = require('method-override')
@@ -13,6 +14,13 @@ const port = 3000
 app.engine('handlebars', exhbs({ defaultLayout: 'main' }))
 // set the app to use the handlebars engine
 app.set('view engine', 'handlebars')
+app.use(
+  session({
+    secret: "ThisIsMySecret",
+    resave: false,
+    saveUninitialized: true,
+  })
+);
 // setting static files
 app.use(express.static('public'))
 // Use body parser
