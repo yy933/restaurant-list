@@ -10,7 +10,7 @@ router.get('/new', (req, res) => {
 // routing: create new items
 router.post('/', (req, res) => {
   const contents = req.body
-  const userId = req.user._id;
+  const userId = req.user._id
   restaurants.create(userId, contents, (error, newItem) => {
     if (error) {
       console.log(error)
@@ -31,9 +31,9 @@ router.post('/', (req, res) => {
 // routing for each item
 router.get('/:_id', (req, res) => {
   const _id = req.params._id
-  const userId = req.user._id;
+  const userId = req.user._id
   restaurants
-    .findOne({_id, userId})
+    .findOne({ _id, userId })
     .lean()
     .then((restaurant) => res.render('show', { restaurant }))
     .catch((error) => {
@@ -45,9 +45,9 @@ router.get('/:_id', (req, res) => {
 // routing: edit items
 router.get('/:_id/edit', (req, res) => {
   const _id = req.params._id
-  const userId = req.user._id;
+  const userId = req.user._id
   restaurants
-    .findOne({_id, userId})
+    .findOne({ _id, userId })
     .lean()
     .then((restaurant) => res.render('edit', { restaurant }))
     .catch((error) => {
@@ -59,9 +59,9 @@ router.get('/:_id/edit', (req, res) => {
 router.put('/:_id', (req, res) => {
   const _id = req.params._id
   const contents = req.body
-  const userId = req.user._id;
+  const userId = req.user._id
   return restaurants
-    .findOne({_id, userId})
+    .findOne({ _id, userId })
     .then((restaurant) => {
       restaurant.name = contents.name
       restaurant.name_en = contents.name_en
@@ -84,9 +84,9 @@ router.put('/:_id', (req, res) => {
 // routing: delete items
 router.delete('/:_id', (req, res) => {
   const _id = req.params._id
-  const userId = req.user._id;
+  const userId = req.user._id
   return restaurants
-    .findOne({_id, userId})
+    .findOne({ _id, userId })
     .then((restaurant) => restaurant.remove())
     .then(() => res.redirect('/'))
     .catch((error) => {

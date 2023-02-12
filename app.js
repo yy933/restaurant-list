@@ -1,8 +1,9 @@
 const express = require('express')
 const session = require('express-session')
-const usePassport = require("./config/passport");
+const usePassport = require('./config/passport')
 const exhbs = require('express-handlebars')
 const bodyParser = require('body-parser')
+const flash = require('connect-flash')
 const methodOverride = require('method-override')
 const routes = require('./routes')
 require('./config/mongoose')
@@ -17,11 +18,11 @@ app.engine('handlebars', exhbs({ defaultLayout: 'main' }))
 app.set('view engine', 'handlebars')
 app.use(
   session({
-    secret: "ThisIsMySecret",
+    secret: 'ThisIsMySecret',
     resave: false,
-    saveUninitialized: true,
+    saveUninitialized: true
   })
-);
+)
 // setting static files
 app.use(express.static('public'))
 // Use body parser
@@ -29,12 +30,21 @@ app.use(bodyParser.urlencoded({ extended: true }))
 // Use method override
 app.use(methodOverride('_method'))
 usePassport(app)
+app.use(flash())
 app.use((req, res, next) => {
-  // console.log(req.user) 
-  res.locals.isAuthenticated = req.isAuthenticated();
-  res.locals.user = req.user;
-  next();
-});
+  res.locals.isAuthenticated = req.isAuthenticated()
+  res.locals.user = req.user
+  res.locals.success_msg = req.flash('success_msg')
+  res.locals.warning_msg = req.flash('warning_msg')
+  res.locals.error_msg = req.flash('error')
+  next()
+})
+app.use((req, res, next) => {
+  // console.log(req.user)
+  res.locals.isAuthenticated = req.isAuthenticated()
+  res.locals.user = req.user
+  next()
+})
 app.use(routes)
 
 // launching and listening the server

@@ -13,9 +13,9 @@ const restaurantSchema = new Schema({
   userId: {
     // 加入關聯設定
     type: Schema.Types.ObjectId,
-    ref: "User",
+    ref: 'User',
     index: true,
-    required: true,
-  },
-});
+    required: true
+  }
+})
 module.exports = mongoose.model('restaurants', restaurantSchema)

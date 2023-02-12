@@ -5,9 +5,9 @@ const router = express.Router()
 const restaurants = require('../../models/restaurants')
 
 router.get('/', (req, res) => {
-  const userId = req.user._id;
+  const userId = req.user._id
   restaurants
-    .find({userId})
+    .find({ userId })
     .lean()
     .then((restaurantsData) => res.render('index', { restaurantsData }))
     .catch((error) => {
@@ -18,13 +18,13 @@ router.get('/', (req, res) => {
 
 // routing: searching
 router.get('/search', (req, res) => {
-  const userId = req.user._id;
+  const userId = req.user._id
   if (!req.query.keyword) {
     res.redirect('/')
   }
   const keyword = req.query.keyword.trim().toLowerCase()
   restaurants
-    .find({userId})
+    .find({ userId })
     .lean()
     .then((restaurantsData) => {
       const restaurants = restaurantsData.filter(
@@ -43,7 +43,7 @@ router.get('/search', (req, res) => {
 
 // routing: sort
 router.get('/sort', (req, res) => {
-  const userId = req.user._id;
+  const userId = req.user._id
   const sortMethod = req.query.sortMethod
   let sortBy
   if (sortMethod === 'A -> Z') {
@@ -60,7 +60,7 @@ router.get('/sort', (req, res) => {
   }
 
   restaurants
-    .find({userId})
+    .find({ userId })
     .lean()
     .sort(sortBy)
     .then(restaurantsData => res.render('index', { restaurantsData, sortMethod }))
