@@ -9,7 +9,7 @@ router.get('/login', (req, res) => {
 })
 router.get('/logout', (req, res) => {
   req.logout()
-  req.flash('success_msg', '你已經成功登出。')
+  req.flash('success_msg', 'You have logged out successfully.')
   res.redirect('/users/login')
 })
 router.get('/register', (req, res) => {
@@ -17,6 +17,15 @@ router.get('/register', (req, res) => {
 })
 router.post(
   '/login',
+  (req, res, next) => {
+    const { email, password } = req.body
+    
+    if (!email || !password) {
+      req.flash('warning_msg', 'Please login with valid email and password.')
+      return res.redirect('/users/login')
+    }
+    next()
+  },
   passport.authenticate('local', {
     successRedirect: '/',
     failureRedirect: '/users/login',
@@ -24,13 +33,17 @@ router.post(
   })
 )
 router.post('/register', (req, res) => {
-  const { name, email, password, confirmPassword } = req.body
+  const { name, email, password, confirmPassword, termsOfService } = req.body
+  console.log(req.body);
   const errors = []
-  if (!name || !email || !password || !confirmPassword) {
-    errors.push({ message: '請填寫必要資訊！' })
+  if (!email || !password || !confirmPassword) {
+    errors.push({ message: 'Please fill in all required fields!' })
   }
   if (password !== confirmPassword) {
-    errors.push({ message: '密碼與確認密碼不相符！' })
+    errors.push({ message: 'Your password does not match the confirmed password.' })
+  }
+  if (!termsOfService) {
+    errors.push({ message: "You must agree with our Terms of Service to continue." })
   }
   if (errors.length) {
     return res.render('register', {
@@ -44,7 +57,7 @@ router.post('/register', (req, res) => {
   User.findOne({ email })
     .then((user) => {
       if (user) {
-        errors.push({ message: '這個 Email 已經註冊過了。' })
+        errors.push({ message: 'This email has already been registered.' })
         return res.render('register', {
           errors,
           name,
@@ -59,16 +72,16 @@ router.post('/register', (req, res) => {
         .then((salt) => bcrypt.hash(password, salt))
         .then((hash) =>
           User.create({
-            name,
+            name: name || email.slice(0, email.indexOf("@")),
             email,
-            password: hash
+            password: hash,
           })
         )
-        .then(() => res.redirect('/'))
+        .then(() => res.redirect("/"))
         .catch((error) => {
-          console.log(error)
-          res.render('error', { error_message: error.message })
-        })
+          console.log(error);
+          res.render("error", { error_message: error.message });
+        });
     })
     .catch((err) => console.log(err))
 })

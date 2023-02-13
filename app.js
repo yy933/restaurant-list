@@ -1,9 +1,12 @@
 const express = require('express')
-const session = require('express-session')
+const logger = require('morgan')
+
+const session = require("express-session");
+const flash = require("connect-flash-plus");
 const usePassport = require('./config/passport')
 const exhbs = require('express-handlebars')
 const bodyParser = require('body-parser')
-const flash = require('connect-flash')
+
 if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config()
 }
@@ -19,13 +22,15 @@ const port = process.env.PORT
 app.engine('handlebars', exhbs({ defaultLayout: 'main' }))
 // set the app to use the handlebars engine
 app.set('view engine', 'handlebars')
+app.use(logger('dev'))
 app.use(
   session({
     secret: process.env.SESSION_SECRET,
     resave: false,
-    saveUninitialized: true
+    saveUninitialized: true,
+    
   })
-)
+);
 // setting static files
 app.use(express.static('public'))
 // Use body parser
@@ -39,15 +44,9 @@ app.use((req, res, next) => {
   res.locals.user = req.user
   res.locals.success_msg = req.flash('success_msg')
   res.locals.warning_msg = req.flash('warning_msg')
-  res.locals.error_msg = req.flash('error')
   next()
 })
-app.use((req, res, next) => {
-  // console.log(req.user)
-  res.locals.isAuthenticated = req.isAuthenticated()
-  res.locals.user = req.user
-  next()
-})
+
 app.use(routes)
 
 // launching and listening the server
