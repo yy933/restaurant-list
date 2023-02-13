@@ -19,7 +19,6 @@ router.post(
   '/login',
   (req, res, next) => {
     const { email, password } = req.body
-    
     if (!email || !password) {
       req.flash('warning_msg', 'Please login with valid email and password.')
       return res.redirect('/users/login')
@@ -42,8 +41,10 @@ router.post('/register', (req, res) => {
   if (password !== confirmPassword) {
     errors.push({ message: 'Your password does not match the confirmed password.' })
   }
-  if (!termsOfService) {
-    errors.push({ message: "You must agree with our Terms of Service to continue." })
+  if (termsOfService !== 'agree') {
+    errors.push({
+      message: "You must agree with our Terms of Service to continue.",
+    });
   }
   if (errors.length) {
     return res.render('register', {
