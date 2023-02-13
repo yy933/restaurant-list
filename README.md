@@ -60,14 +60,14 @@ npm run start
 
 ## 測試 Test
 匯入種子資料後，可利用以下兩組帳號進行測試：
-:::info
+
 * User 1:
 email: user1@example.com
 password: 12345678
 * User 2:
 email: user2@example.com
 password: 12345678
-:::
+
 
 
 
