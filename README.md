@@ -2,8 +2,12 @@
 ---
 這是一個使用Node.js與Express所建立的餐廳資訊網站，使用者註冊帳號並登入後，可以透過關鍵字搜尋餐廳，也可以新增、編輯自己喜愛的餐廳清單。
 <p align="center">
-  <h3>首頁</h3>
-  <img src="readme_images/Foodies-diary_index.jpg" width="100%" alt="my-bucket-list_index">
+  <h3>登入頁面</h3>
+  <img src="readme_images\Foodies-diary_login page.jpg" width="100%" alt="Foodie-Diary_login">
+  <h3>註冊頁面</h3>
+  <img src="readme_images\Foodies-diary_register page.jpg" width="100%" alt="Foodie-Diary_register">
+    <h3>登入後可製作個人餐廳清單</h3>
+  <img src="readme_images\Foodies-diary_main.jpg" width="100%" alt="Foodie-Diary_main">
 </p>
 
 ## 功能 Features
